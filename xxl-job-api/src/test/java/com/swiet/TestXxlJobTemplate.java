@@ -2,10 +2,12 @@ package com.swiet;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.Assert;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.swiet.domain.User;
 import com.swiet.pojo.AddXxlJob;
 import com.swiet.pojo.UpdateXxlJob;
-import com.swiet.pojo.XxlJobGroup;
 import com.swiet.pojo.XxlJobInfo;
+import com.swiet.service.UserService;
 import com.swiet.utils.XxlJobTemplate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,12 @@ public class TestXxlJobTemplate {
 
     @Autowired
     private XxlJobTemplate xxlJobTemplate;
-
+    @Autowired
+    private UserService userService;
     @Test
     public void pageGroupTest() {
-        String appname = "";
-        String title = "";
-        List<XxlJobGroup> xxlJobGroups = xxlJobTemplate.listGroup(appname, title);
-        System.out.println(xxlJobGroups);
+        List<User> list = userService.list(Wrappers.<User>lambdaQuery().groupBy(User::getId));
+        System.out.println(list);
     }
 
     @Test

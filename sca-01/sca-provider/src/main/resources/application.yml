@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: sca-provider #进行服务注册必须配置服务名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.64.3:8848
